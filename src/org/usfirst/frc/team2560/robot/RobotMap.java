@@ -20,4 +20,8 @@ public class RobotMap
 	public static int rightMotor = 2;
 	public static int leftFollow = 3;
 	public static int rightFollow = 4;
+	
+	//Joystick Ports
+	public static int joystick0 = 0;
+	public static int joystick1 = 1;
 }

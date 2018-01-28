@@ -1,11 +1,14 @@
 package org.usfirst.frc.team2560.robot.subsystems;
 
+import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import org.usfirst.frc.team2560.robot.RobotMap;
+import org.usfirst.frc.team2560.robot.commands.DriveWithController;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.kauailabs.navx.frc.AHRS;
 
 /**
  *
@@ -15,6 +18,7 @@ public class DriveTrain extends Subsystem
 
     private WPI_TalonSRX left, leftFollow, right, rightFollow;
     private DifferentialDrive drive;
+    private AHRS ahrs;
 
     public DriveTrain()
     {
@@ -29,8 +33,11 @@ public class DriveTrain extends Subsystem
     	rightFollow.follow(right);
     	
     	drive = new DifferentialDrive(left, right);
+    	
+    	ahrs = new AHRS(Port.kMXP);
     }
     
+    //drive commands
     public void arcadeDrive(double forwardAxis, double twist)
     {
     	drive.arcadeDrive(forwardAxis, twist);
@@ -50,11 +57,39 @@ public class DriveTrain extends Subsystem
 	{
 		drive.curvatureDrive(outputMagnitude, curve, turn);
 	}
+	
+	//gyro commands
     
+	public void reset()
+	{
+		ahrs.reset();
+	}
+	
+	public double getAngle()
+	{
+		return ahrs.getAngle();
+	}
+	
+	//encoder commands
+	public double getLeftPos()
+	{
+		return left.getSelectedSensorPosition(0);
+	}
+	
+	public double getRightPos()
+	{
+		return right.getSelectedSensorPosition(0);
+	}
+	
+	public void resetEnc()
+	{
+		left.setSelectedSensorPosition(0, 0, 10);
+		right.setSelectedSensorPosition(0, 0, 10);
+	}
+	
     public void initDefaultCommand() 
     {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new DriveWithController());
     }
 }
 

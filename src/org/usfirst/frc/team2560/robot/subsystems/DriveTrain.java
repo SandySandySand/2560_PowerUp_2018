@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2560.robot.subsystems;
 
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -13,12 +15,17 @@ import com.kauailabs.navx.frc.AHRS;
 /**
  *
  */
-public class DriveTrain extends Subsystem 
+public class DriveTrain extends Subsystem implements PIDOutput 
 {
 
     private WPI_TalonSRX left, leftFollow, right, rightFollow;
     private DifferentialDrive drive;
     private AHRS ahrs;
+    public PIDController rotatePID;
+    
+    public double kP = 0;
+	public double kI = 0;
+	public double kD = 0;
 
     public DriveTrain()
     {
@@ -35,7 +42,18 @@ public class DriveTrain extends Subsystem
     	drive = new DifferentialDrive(left, right);
     	
     	ahrs = new AHRS(Port.kMXP);
+    	
+    	rotatePID = new PIDController(kP, kI, kD, ahrs,  this);
+    	rotatePID.setContinuous(true);
+    	rotatePID.setInputRange(-360, 360);
+    	rotatePID.setOutputRange(-1.0, 1.0);
     }
+    
+    @Override 
+	public void pidWrite(double output) {
+		// does nothing
+		
+	}
     
     //drive commands
     public void arcadeDrive(double forwardAxis, double twist)
@@ -91,5 +109,7 @@ public class DriveTrain extends Subsystem
     {
         setDefaultCommand(new DriveWithController());
     }
+
+	
 }
 

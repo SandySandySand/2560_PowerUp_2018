@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team2560.robot;
 
+import org.usfirst.frc.team2560.robot.commands.DriveForwardGyroAndEncoder;
 import org.usfirst.frc.team2560.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -75,8 +76,7 @@ public class Robot extends TimedRobot
 	@Override
 	public void autonomousInit() 
 	{
-		m_autonomousCommand = m_chooser.getSelected();
-
+		m_autonomousCommand = new (Command) DriveForwardGyroAndEncoder(12, 0.5);
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand

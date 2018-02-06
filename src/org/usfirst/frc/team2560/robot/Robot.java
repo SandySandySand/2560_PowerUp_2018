@@ -9,6 +9,7 @@ package org.usfirst.frc.team2560.robot;
 
 import org.usfirst.frc.team2560.robot.commands.DriveForwardGyroAndEncoder;
 import org.usfirst.frc.team2560.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2560.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -28,6 +29,7 @@ public class Robot extends TimedRobot
 {
 	public static OI m_oi;
 	public static DriveTrain drivetrain;
+	public static Elevator elevator;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -41,8 +43,7 @@ public class Robot extends TimedRobot
 	{
 		m_oi = new OI();
 		drivetrain = new DriveTrain();
-				// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
+		elevator = new Elevator();
 	}
 
 	/**
@@ -76,7 +77,7 @@ public class Robot extends TimedRobot
 	@Override
 	public void autonomousInit() 
 	{
-		m_autonomousCommand = new (Command) DriveForwardGyroAndEncoder(12, 0.5);
+		m_autonomousCommand = new DriveForwardGyroAndEncoder(12, 0.5);
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand

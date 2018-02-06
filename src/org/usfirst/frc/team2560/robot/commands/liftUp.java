@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveWithController extends Command 
+public class liftUp extends Command 
 {
 
-    public DriveWithController() 
+    public liftUp() 
     {
-        requires(Robot.drivetrain);
+        requires(Robot.elevator);
     }
 
     // Called just before this Command runs the first time
@@ -23,8 +23,7 @@ public class DriveWithController extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-    	double multiplier = 0.8;
-    	Robot.drivetrain.arcadeDrive(-Robot.m_oi.joystick0.getRawAxis(1)*multiplier, Robot.m_oi.joystick0.getRawAxis(2)*0.66);
+    	Robot.elevator.liftUp(0.5);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -36,7 +35,7 @@ public class DriveWithController extends Command
     // Called once after isFinished returns true
     protected void end() 
     {
-    	Robot.drivetrain.stop();
+    	Robot.elevator.stop();
     }
 
     // Called when another command which requires one or more of the same

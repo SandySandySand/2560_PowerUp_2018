@@ -10,6 +10,7 @@ import org.usfirst.frc.team2560.robot.commands.DriveWithController;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
 
 /**
@@ -18,7 +19,8 @@ import com.kauailabs.navx.frc.AHRS;
 public class DriveTrain extends Subsystem implements PIDOutput 
 {
 
-    private WPI_TalonSRX left, leftFollow, right, rightFollow;
+    private WPI_TalonSRX left,  right; 
+    private WPI_VictorSPX leftFollow, rightFollow;
     private DifferentialDrive drive;
     private AHRS ahrs;
     public PIDController rotatePID;
@@ -34,9 +36,9 @@ public class DriveTrain extends Subsystem implements PIDOutput
     	right = new WPI_TalonSRX(RobotMap.rightMotor);
     	right.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
     	
-    	leftFollow = new WPI_TalonSRX(RobotMap.leftFollow);
+    	leftFollow = new WPI_VictorSPX(RobotMap.leftFollow);
     	leftFollow.follow(left);
-    	rightFollow = new WPI_TalonSRX(RobotMap.rightFollow);
+    	rightFollow = new WPI_VictorSPX(RobotMap.rightFollow);
     	rightFollow.follow(right);
     	
     	drive = new DifferentialDrive(left, right);

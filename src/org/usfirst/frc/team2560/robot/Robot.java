@@ -8,6 +8,7 @@
 package org.usfirst.frc.team2560.robot;
 
 import org.usfirst.frc.team2560.robot.commands.DriveForwardGyroAndEncoder;
+import org.usfirst.frc.team2560.robot.subsystems.Claw;
 import org.usfirst.frc.team2560.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2560.robot.subsystems.Elevator;
 
@@ -30,6 +31,7 @@ public class Robot extends TimedRobot
 	public static OI m_oi;
 	public static DriveTrain drivetrain;
 	public static Elevator elevator;
+	public static Claw claw;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -44,6 +46,7 @@ public class Robot extends TimedRobot
 		m_oi = new OI();
 		drivetrain = new DriveTrain();
 		elevator = new Elevator();
+		claw = new Claw();
 	}
 
 	/**

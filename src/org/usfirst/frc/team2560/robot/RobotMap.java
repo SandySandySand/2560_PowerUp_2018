@@ -25,8 +25,8 @@ public class RobotMap
 	public static int elevator = 1;
 	
 	//PCM Values
-	public static int soleone = 1;
-	public static int soletwo = 2;
+	public static int soleportone = 1;
+	public static int soleporttwo = 2;
 	
 	//Joystick Ports
 	public static int joystick0 = 0;

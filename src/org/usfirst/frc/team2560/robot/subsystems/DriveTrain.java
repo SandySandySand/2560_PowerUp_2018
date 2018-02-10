@@ -46,7 +46,6 @@ public class DriveTrain extends Subsystem implements PIDOutput
     	ahrs = new AHRS(Port.kMXP);
     	
     	rotatePID = new PIDController(kP, kI, kD, ahrs,  this);
-    	//rotatePID.setContinuous(true);
     	rotatePID.setInputRange(-360, 360);
     	rotatePID.setOutputRange(-1.0, 1.0);
     }

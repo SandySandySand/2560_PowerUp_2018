@@ -31,4 +31,9 @@ public class RobotMap
 	//Joystick Ports
 	public static int joystick0 = 0;
 	public static int joystick1 = 1;
+	
+	//Joystick Buttons
+	public static int openclaw = 1;
+	public static int closeclaw = 3; 
+	
 }

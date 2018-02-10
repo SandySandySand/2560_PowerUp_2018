@@ -7,7 +7,13 @@
 
 package org.usfirst.frc.team2560.robot;
 
+import org.usfirst.frc.team2560.robot.commands.SetBothSolenoids;
+import org.usfirst.frc.team2560.robot.commands.UnsetBothSolenoids;
+import org.usfirst.frc.team2560.robot.commands.liftUp;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -21,6 +27,25 @@ public class OI
 	{
 		joystick0 = new Joystick(RobotMap.joystick0);
 		joystick1 = new Joystick(RobotMap.joystick1);
+		
+		if (joystick1.getPOV(0) == 0)
+		{
+			Robot.elevator.liftUp(0.5);
+		}
+		else if (joystick1.getPOV(0) == 180)
+		{
+			Robot.elevator.goDown(0.5);
+		}
+		else
+		{
+			Robot.elevator.stop();
+		}
+		
+		Button openClaw = new JoystickButton(joystick1, RobotMap.openclaw);
+		openClaw.whenPressed(new SetBothSolenoids());
+		
+		Button closeClaw = new JoystickButton(joystick1, RobotMap.closeclaw);
+		closeClaw.whenPressed(new UnsetBothSolenoids());
 	}
 	public Joystick getJoystick0()
 	{

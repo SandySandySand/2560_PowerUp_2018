@@ -31,7 +31,7 @@ public class Robot extends TimedRobot
 	public static OI m_oi;
 	public static DriveTrain drivetrain;
 	public static Elevator elevator;
-	public static Claw claw;
+	//public static Claw claw;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -46,7 +46,7 @@ public class Robot extends TimedRobot
 		m_oi = new OI();
 		drivetrain = new DriveTrain();
 		elevator = new Elevator();
-		claw = new Claw();
+		//claw = new Claw();
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class Robot extends TimedRobot
 	@Override
 	public void autonomousInit() 
 	{
-		m_autonomousCommand = new DriveForwardGyroAndEncoder(12, 0.5);
+		m_autonomousCommand = new DriveForwardGyroAndEncoder(110, 0.5);
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -93,6 +93,7 @@ public class Robot extends TimedRobot
 		{
 			m_autonomousCommand.start();
 		}
+		SmartDashboard.putNumber("ticks to go", Robot.drivetrain.getRightPos());
 	}
 
 	/**
@@ -102,6 +103,7 @@ public class Robot extends TimedRobot
 	public void autonomousPeriodic() 
 	{
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("ticks to go", Robot.drivetrain.getRightPos());
 	}
 
 	@Override

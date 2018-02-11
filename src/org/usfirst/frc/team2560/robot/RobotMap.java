@@ -17,9 +17,9 @@ public class RobotMap
 {
 	//CAN Values
 	public static int leftMotor = 2;
-	public static int rightMotor = 1;
-	public static int leftFollow = 4; 
-	public static int rightFollow = 3;
+	public static int rightMotor = 4;
+	public static int leftFollow = 3; 
+	public static int rightFollow = 1;
 	
 	//PWM Values
 	public static int elevator = 1;

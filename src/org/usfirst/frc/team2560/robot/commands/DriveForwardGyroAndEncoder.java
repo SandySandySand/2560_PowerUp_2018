@@ -3,6 +3,7 @@ package org.usfirst.frc.team2560.robot.commands;
 import org.usfirst.frc.team2560.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -33,19 +34,21 @@ public class DriveForwardGyroAndEncoder extends Command
     protected void execute() 
     {
     	double ticksToGo = requiredDistance * TICKS_PER_INCH; //calculates ticks needed to go to reach distance
+    	SmartDashboard.putNumber("ticks to go auto", ticksToGo);
     	double totalTicks = 0; //will be rolling count of total ticks gone
+    	SmartDashboard.putNumber("total ticks", totalTicks);
+    	
     	double angle = Robot.drivetrain.getAngle(); //angle the robot is going
     	double Kp = 0.03; //pid value P
     	
-    	while (fin == false)
-    	{
-    		while (totalTicks > ticksToGo)
-    		{
-    			Robot.drivetrain.gyroDrive(power, angle*Kp, true); //keeps the robot driving straight
-        		totalTicks = Robot.drivetrain.getRightPos(); //keeps rolling count of our current position
-    		}
-    		fin = true; //finishes the command when destination is reached
-    	}
+		while (totalTicks < ticksToGo)
+		{
+			//Robot.drivetrain.gyroDrive(power, angle*Kp, true); //keeps the robot driving straight
+			Robot.drivetrain.tankDrive(power, power);
+    		totalTicks = Math.abs(Robot.drivetrain.getRightPos()); //keeps rolling count of our current position
+    		SmartDashboard.putNumber("total ticks", totalTicks);
+		}
+		fin = true; //finishes the command when destination is reached
     }
 
     // Make this return true when this Command no longer needs to run execute()

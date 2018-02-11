@@ -19,8 +19,7 @@ import com.kauailabs.navx.frc.AHRS;
 public class DriveTrain extends Subsystem implements PIDOutput 
 {
 
-    private WPI_TalonSRX left,  right; 
-    private WPI_VictorSPX leftFollow, rightFollow;
+    private WPI_TalonSRX left,  right, leftFollow, rightFollow; 
     private DifferentialDrive drive;
     private AHRS ahrs;
     public PIDController rotatePID;
@@ -36,9 +35,9 @@ public class DriveTrain extends Subsystem implements PIDOutput
     	right = new WPI_TalonSRX(RobotMap.rightMotor);
     	right.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
     	
-    	leftFollow = new WPI_VictorSPX(RobotMap.leftFollow);
+    	leftFollow = new WPI_TalonSRX(RobotMap.leftFollow);
     	leftFollow.follow(left);
-    	rightFollow = new WPI_VictorSPX(RobotMap.rightFollow);
+    	rightFollow = new WPI_TalonSRX(RobotMap.rightFollow);
     	rightFollow.follow(right);
     	
     	drive = new DifferentialDrive(left, right);

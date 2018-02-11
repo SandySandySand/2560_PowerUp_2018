@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team2560.robot;
 
+import org.usfirst.frc.team2560.robot.commands.DriveAndTurnAuto;
 import org.usfirst.frc.team2560.robot.commands.DriveForwardGyroAndEncoder;
 import org.usfirst.frc.team2560.robot.subsystems.Claw;
 import org.usfirst.frc.team2560.robot.subsystems.DriveTrain;
@@ -30,11 +31,10 @@ public class Robot extends TimedRobot
 {
 	public static OI m_oi;
 	public static DriveTrain drivetrain;
-	public static Elevator elevator;
+	//public static Elevator elevator;
 	//public static Claw claw;
 
 	Command m_autonomousCommand;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -45,7 +45,7 @@ public class Robot extends TimedRobot
 	{
 		m_oi = new OI();
 		drivetrain = new DriveTrain();
-		elevator = new Elevator();
+		//elevator = new Elevator();
 		//claw = new Claw();
 	}
 
@@ -63,6 +63,7 @@ public class Robot extends TimedRobot
 	@Override
 	public void disabledPeriodic() 
 	{
+		SmartDashboard.putNumber("Current Angle", Robot.drivetrain.getAngle());
 		Scheduler.getInstance().run();
 	}
 
@@ -80,7 +81,7 @@ public class Robot extends TimedRobot
 	@Override
 	public void autonomousInit() 
 	{
-		m_autonomousCommand = new DriveForwardGyroAndEncoder(110, 0.5);
+		m_autonomousCommand = new DriveAndTurnAuto();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -93,7 +94,7 @@ public class Robot extends TimedRobot
 		{
 			m_autonomousCommand.start();
 		}
-		SmartDashboard.putNumber("ticks to go", Robot.drivetrain.getRightPos());
+		//SmartDashboard.putNumber("ticks to go", Robot.drivetrain.getRightPos());
 	}
 
 	/**
@@ -103,7 +104,7 @@ public class Robot extends TimedRobot
 	public void autonomousPeriodic() 
 	{
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("ticks to go", Robot.drivetrain.getRightPos());
+		//SmartDashboard.putNumber("ticks to go", Robot.drivetrain.getRightPos());
 	}
 
 	@Override
@@ -113,7 +114,8 @@ public class Robot extends TimedRobot
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (m_autonomousCommand != null) {
+		if (m_autonomousCommand != null) 
+		{
 			m_autonomousCommand.cancel();
 		}
 	}

@@ -12,7 +12,7 @@ public class GoDown extends Command
 
     public GoDown() 
     {
-        requires(Robot.elevator);
+        //requires(Robot.elevator);
     }
 
     // Called just before this Command runs the first time
@@ -23,7 +23,7 @@ public class GoDown extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-    	Robot.elevator.goDown(0.5);
+    	//Robot.elevator.goDown(0.5);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -35,7 +35,7 @@ public class GoDown extends Command
     // Called once after isFinished returns true
     protected void end() 
     {
-    	Robot.elevator.stop();
+    	//Robot.elevator.stop();
     }
 
     // Called when another command which requires one or more of the same

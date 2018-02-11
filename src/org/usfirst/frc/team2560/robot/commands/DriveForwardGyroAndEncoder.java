@@ -39,6 +39,7 @@ public class DriveForwardGyroAndEncoder extends Command
     	SmartDashboard.putNumber("total ticks", totalTicks);
     	
     	double angle = Robot.drivetrain.getAngle(); //angle the robot is going
+    	SmartDashboard.putNumber("Angle", angle);
     	double Kp = 0.03; //pid value P
     	
 		while (totalTicks < ticksToGo)
@@ -47,6 +48,7 @@ public class DriveForwardGyroAndEncoder extends Command
 			Robot.drivetrain.tankDrive(power, power);
     		totalTicks = Math.abs(Robot.drivetrain.getRightPos()); //keeps rolling count of our current position
     		SmartDashboard.putNumber("total ticks", totalTicks);
+    		SmartDashboard.putNumber("Angle", angle);
 		}
 		fin = true; //finishes the command when destination is reached
     }

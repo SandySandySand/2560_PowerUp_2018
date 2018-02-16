@@ -7,9 +7,10 @@
 
 package org.usfirst.frc.team2560.robot;
 
+import org.usfirst.frc.team2560.robot.commands.GoDown;
 import org.usfirst.frc.team2560.robot.commands.SetBothSolenoids;
 import org.usfirst.frc.team2560.robot.commands.UnsetBothSolenoids;
-import org.usfirst.frc.team2560.robot.commands.liftUp;
+import org.usfirst.frc.team2560.robot.commands.LiftUp;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -28,7 +29,7 @@ public class OI
 		joystick0 = new Joystick(RobotMap.joystick0);
 		joystick1 = new Joystick(RobotMap.joystick1);
 		
-		if (joystick1.getPOV(0) == 0)
+		/*if (joystick1.getPOV(0) == 0)
 		{
 			Robot.elevator.liftUp(0.5);
 		}
@@ -39,13 +40,19 @@ public class OI
 		else
 		{
 			Robot.elevator.stop();
-		}
+		}*/
 		
 		Button openClaw = new JoystickButton(joystick1, RobotMap.openclaw);
 		openClaw.whenPressed(new SetBothSolenoids());
 		
 		Button closeClaw = new JoystickButton(joystick1, RobotMap.closeclaw);
 		closeClaw.whenPressed(new UnsetBothSolenoids());
+		
+	    Button lift = new JoystickButton(joystick1, RobotMap.lift);
+		lift.whileHeld(new LiftUp());
+		
+		Button down = new JoystickButton(joystick1, RobotMap.down);
+		down.whileHeld(new GoDown());
 	}
 	public Joystick getJoystick0()
 	{

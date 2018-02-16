@@ -3,11 +3,12 @@ package org.usfirst.frc.team2560.robot.commands;
 import org.usfirst.frc.team2560.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class DriveForwardGyroAndEncoder extends Command 
+public class DriveForwardEncoder extends Command 
 {
 
 	private double requiredDistance;
@@ -15,7 +16,7 @@ public class DriveForwardGyroAndEncoder extends Command
 	private final double TICKS_PER_INCH = 217.3;
 	private boolean fin = false;
 	
-    public DriveForwardGyroAndEncoder(double requiredDistance, double power) 
+    public DriveForwardEncoder(double requiredDistance, double power) 
     {
        requires(Robot.drivetrain);
        this.requiredDistance = requiredDistance;
@@ -34,18 +35,19 @@ public class DriveForwardGyroAndEncoder extends Command
     {
     	double ticksToGo = requiredDistance * TICKS_PER_INCH; //calculates ticks needed to go to reach distance
     	double totalTicks = 0; //will be rolling count of total ticks gone
-    	double angle = Robot.drivetrain.getAngle(); //angle the robot is going
-    	double Kp = 0.03; //pid value P
+    	//double angle = Robot.drivetrain.getAngle(); //angle the robot is going
+    	//double Kp = 0.03; //pid value P
     	
-    	while (fin == false)
-    	{
-    		while (totalTicks > ticksToGo)
-    		{
-    			Robot.drivetrain.gyroDrive(power, angle*Kp, true); //keeps the robot driving straight
-        		totalTicks = Robot.drivetrain.getRightPos(); //keeps rolling count of our current position
-    		}
-    		fin = true; //finishes the command when destination is reached
-    	}
+    	while (totalTicks < ticksToGo) 
+    	{ 
+    		//Robot.drivetrain.gyroDrive(power, angle*Kp, true); //keeps the robot driving straight 
+    		Robot.drivetrain.tankDrive(power, power); 
+    		totalTicks = Math.abs(Robot.drivetrain.getLeftPos()); //keeps rolling count of our current position 
+    		SmartDashboard.putNumber("total ticks", totalTicks);
+    		SmartDashboard.putNumber("ticksToGo", ticksToGo);
+    		//SmartDashboard.putNumber("Angle", angle); 
+    	} 
+    	fin = true; //finishes the command when destination is reached 
     }
 
     // Make this return true when this Command no longer needs to run execute()

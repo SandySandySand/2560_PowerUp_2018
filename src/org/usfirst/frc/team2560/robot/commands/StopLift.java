@@ -7,41 +7,33 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class liftUp extends Command 
-{
+public class StopLift extends Command {
 
-    public liftUp() 
-    {
+    public StopLift() {
         requires(Robot.elevator);
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() 
-    {
+    protected void initialize() {
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-    	Robot.elevator.liftUp(0.5);
+    	Robot.elevator.stop();
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() 
-    {
+    protected boolean isFinished() {
         return false;
     }
 
     // Called once after isFinished returns true
-    protected void end() 
-    {
-    	Robot.elevator.stop();
+    protected void end() {
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() 
-    {
-    	end();
+    protected void interrupted() {
     }
 }

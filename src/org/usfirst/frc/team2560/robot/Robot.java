@@ -7,7 +7,7 @@
 
 package org.usfirst.frc.team2560.robot;
 
-import org.usfirst.frc.team2560.robot.commands.DriveForwardGyroAndEncoder;
+import org.usfirst.frc.team2560.robot.commands.DriveForwardEncoder;
 import org.usfirst.frc.team2560.robot.subsystems.Claw;
 import org.usfirst.frc.team2560.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2560.robot.subsystems.Elevator;
@@ -28,13 +28,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends TimedRobot 
 {
-	public static OI m_oi;
+	public static Claw claw;
 	public static DriveTrain drivetrain;
 	public static Elevator elevator;
-	public static Claw claw;
-
+	public static OI m_oi;
+	
 	Command m_autonomousCommand;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -43,10 +42,11 @@ public class Robot extends TimedRobot
 	@Override
 	public void robotInit() 
 	{
-		m_oi = new OI();
+		claw = new Claw();
 		drivetrain = new DriveTrain();
 		elevator = new Elevator();
-		claw = new Claw();
+		m_oi = new OI();
+		
 	}
 
 	/**
@@ -57,13 +57,14 @@ public class Robot extends TimedRobot
 	@Override
 	public void disabledInit() 
 	{
-
+		SmartDashboard.putNumber("Encoder Ticks", Robot.drivetrain.getLeftPos());
 	}
 
 	@Override
 	public void disabledPeriodic() 
 	{
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Encoder Ticks", Robot.drivetrain.getLeftPos());
 	}
 
 	/**
@@ -80,7 +81,7 @@ public class Robot extends TimedRobot
 	@Override
 	public void autonomousInit() 
 	{
-		m_autonomousCommand = new DriveForwardGyroAndEncoder(12, 0.5);
+		m_autonomousCommand = new DriveForwardEncoder(120, 0.5);
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand

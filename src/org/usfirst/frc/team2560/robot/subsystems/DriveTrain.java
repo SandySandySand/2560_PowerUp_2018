@@ -25,7 +25,7 @@ public class DriveTrain extends Subsystem implements PIDOutput
     private AHRS ahrs;
     public PIDController rotatePID;
     
-    public double kP = 0;
+    public double kP = 0.3;
 	public double kI = 0;
 	public double kD = 0;
 
@@ -51,7 +51,8 @@ public class DriveTrain extends Subsystem implements PIDOutput
     }
     
     @Override 
-	public void pidWrite(double output) {
+	public void pidWrite(double output) 
+    {
 		// does nothing
 		
 	}

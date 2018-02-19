@@ -26,7 +26,7 @@ public class Elevator extends Subsystem
     
     public void goDown(double power)
     {
-    	lift.set(-power);
+    	lift.set(power);
     }
     
     public void stop()

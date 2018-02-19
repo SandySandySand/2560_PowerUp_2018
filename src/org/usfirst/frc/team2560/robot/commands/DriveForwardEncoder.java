@@ -40,12 +40,10 @@ public class DriveForwardEncoder extends Command
     	
     	while (totalTicks < ticksToGo) 
     	{ 
-    		//Robot.drivetrain.gyroDrive(power, angle*Kp, true); //keeps the robot driving straight 
     		Robot.drivetrain.tankDrive(power, power); 
     		totalTicks = Math.abs(Robot.drivetrain.getLeftPos()); //keeps rolling count of our current position 
     		SmartDashboard.putNumber("total ticks", totalTicks);
     		SmartDashboard.putNumber("ticksToGo", ticksToGo);
-    		//SmartDashboard.putNumber("Angle", angle); 
     	} 
     	fin = true; //finishes the command when destination is reached 
     }

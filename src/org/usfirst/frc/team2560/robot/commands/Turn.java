@@ -3,6 +3,7 @@ package org.usfirst.frc.team2560.robot.commands;
 import org.usfirst.frc.team2560.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -13,7 +14,6 @@ public class Turn extends Command {
 	
     public Turn(double requiredAngle) 
     {
-        //requires(Robot.gyro);
         requires(Robot.drivetrain); //turn robot using drive and Kp
         this.requiredAngle = requiredAngle;
     } 
@@ -21,22 +21,38 @@ public class Turn extends Command {
     // Called just before this Command runs the first time
     protected void initialize() 
     { 
-    	Robot.drivetrain.reset();
+    	//Robot.drivetrain.reset();
     	Robot.drivetrain.rotatePID.setSetpoint(requiredAngle);
     	Robot.drivetrain.rotatePID.enable();
-    	Robot.drivetrain.rotatePID.setAbsoluteTolerance(0.5);
+    	Robot.drivetrain.rotatePID.setAbsoluteTolerance(0.05);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
     	double endAngle = Robot.drivetrain.getAngle();
-    	while(endAngle < requiredAngle)
+    	if(Math.signum(requiredAngle) == -1)
     	{
-    		endAngle = Robot.drivetrain.getAngle();
-    		Robot.drivetrain.arcadeDrive(0, Robot.drivetrain.rotatePID.get());	//create method that turns robot according to gyro angle
+    		while(endAngle > requiredAngle)
+    		{
+    			endAngle = Robot.drivetrain.getAngle();
+    			Robot.drivetrain.gyroDrive(0, Robot.drivetrain.rotatePID.get(), false);
+    		}
     	}
-    }
+    	else if (Math.signum(endAngle) == 1)
+    	{
+    		while(endAngle < requiredAngle)
+        	{
+        		endAngle = Robot.drivetrain.getAngle();
+        		Robot.drivetrain.gyroDrive(0, Robot.drivetrain.rotatePID.get(), false);	//create method that turns robot according to gyro angle
+        	}
+    	}
+    	else
+    	{
+    		end();
+    		SmartDashboard.putString("Failed", "Your turn value has failed, please check the value");
+    	}//end of else
+    }//end of execute
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() 

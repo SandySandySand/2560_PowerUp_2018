@@ -12,7 +12,7 @@ public class EveryAutoStart extends CommandGroup
     public EveryAutoStart() 
     {
     	addSequential(new LiftUp(), 0.8); //lifts elevator, dropping cube
-        addParallel(new UnsetBothSolenoids()); //allows the claw to open
+        addSequential(new UnsetBothSolenoids()); //allows the claw to open
         addSequential(new GoDown(), 0.8); //drops lifter
         addSequential(new SetBothSolenoids()); //grabs POWER CUBE
     }

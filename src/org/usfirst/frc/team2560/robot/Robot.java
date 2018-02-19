@@ -8,6 +8,7 @@
 package org.usfirst.frc.team2560.robot;
 
 import org.usfirst.frc.team2560.robot.commands.DriveForwardEncoder;
+import org.usfirst.frc.team2560.robot.commands.LeftStationAutoSOLS;
 import org.usfirst.frc.team2560.robot.subsystems.Claw;
 import org.usfirst.frc.team2560.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2560.robot.subsystems.Elevator;
@@ -81,7 +82,7 @@ public class Robot extends TimedRobot
 	@Override
 	public void autonomousInit() 
 	{
-		m_autonomousCommand = new DriveForwardEncoder(120, 0.5);
+		m_autonomousCommand = new LeftStationAutoSOLS();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand

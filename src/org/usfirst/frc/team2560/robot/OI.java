@@ -7,7 +7,12 @@
 
 package org.usfirst.frc.team2560.robot;
 
+import org.usfirst.frc.team2560.robot.commands.GoDown;
+import org.usfirst.frc.team2560.robot.commands.liftUp;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -21,6 +26,12 @@ public class OI
 	{
 		joystick0 = new Joystick(RobotMap.joystick0);
 		joystick1 = new Joystick(RobotMap.joystick1);
+		
+		Button lift = new JoystickButton(joystick1, RobotMap.lift);
+		lift.whileHeld(new liftUp());
+		
+		Button down = new JoystickButton(joystick1, 3);
+		down.whileHeld(new GoDown());
 	}
 	public Joystick getJoystick0()
 	{

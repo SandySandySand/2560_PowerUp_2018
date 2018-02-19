@@ -9,6 +9,7 @@ package org.usfirst.frc.team2560.robot;
 
 import org.usfirst.frc.team2560.robot.commands.DriveAndTurnAuto;
 import org.usfirst.frc.team2560.robot.commands.DriveForwardGyroAndEncoder;
+import org.usfirst.frc.team2560.robot.commands.Turn;
 import org.usfirst.frc.team2560.robot.subsystems.Claw;
 import org.usfirst.frc.team2560.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2560.robot.subsystems.Elevator;
@@ -29,10 +30,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends TimedRobot 
 {
-	public static OI m_oi;
-	public static DriveTrain drivetrain;
-	//public static Elevator elevator;
+	
+	//public static DriveTrain drivetrain;
+	public static Elevator elevator;
 	//public static Claw claw;
+	public static OI m_oi;
 
 	Command m_autonomousCommand;
 
@@ -43,10 +45,11 @@ public class Robot extends TimedRobot
 	@Override
 	public void robotInit() 
 	{
-		m_oi = new OI();
-		drivetrain = new DriveTrain();
-		//elevator = new Elevator();
+		
+		//drivetrain = new DriveTrain();
+		elevator = new Elevator();
 		//claw = new Claw();
+		m_oi = new OI();
 	}
 
 	/**
@@ -63,7 +66,7 @@ public class Robot extends TimedRobot
 	@Override
 	public void disabledPeriodic() 
 	{
-		SmartDashboard.putNumber("Current Angle", Robot.drivetrain.getAngle());
+		//SmartDashboard.putNumber("Current Angle", Robot.drivetrain.getAngle());
 		Scheduler.getInstance().run();
 	}
 
@@ -81,7 +84,7 @@ public class Robot extends TimedRobot
 	@Override
 	public void autonomousInit() 
 	{
-		m_autonomousCommand = new DriveAndTurnAuto();
+		m_autonomousCommand = new Turn(90);
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand

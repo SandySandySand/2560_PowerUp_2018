@@ -14,22 +14,22 @@ public class GyroAndDrive extends Command
 	
     public GyroAndDrive() 
     {
-    	requires(Robot.drivetrain); //needs robot drivetrain subsystem to run
+    	//requires(Robot.drivetrain); //needs robot drivetrain subsystem to run
     }
     
     // Called just before this Command runs the first time
     protected void initialize() 
     {
-    	Robot.drivetrain.reset(); //reset gyro position
+    	//Robot.drivetrain.reset(); //reset gyro position
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
     	
-    	double angle = Robot.drivetrain.getAngle(); //gets current angle that robot is facing, hopefully 0
+    	//double angle = Robot.drivetrain.getAngle(); //gets current angle that robot is facing, hopefully 0
     	double Kp = 0.03; //PID P control variable
-    	Robot.drivetrain.gyroDrive(1*multiplier, -angle*Kp, true); //drives forwards using the gyro to correct any heading error
+    	//Robot.drivetrain.gyroDrive(1*multiplier, -angle*Kp, true); //drives forwards using the gyro to correct any heading error
     	Timer.delay(0.04); //waits .04 of a second before looping
     }
 
@@ -42,7 +42,7 @@ public class GyroAndDrive extends Command
     // Called once after isFinished returns true
     protected void end() 
     {
-    	Robot.drivetrain.stop(); //stops both motors
+    	//Robot.drivetrain.stop(); //stops both motors
     }
 
     // Called when another command which requires one or more of the same

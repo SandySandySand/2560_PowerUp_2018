@@ -22,11 +22,14 @@ public class RobotMap
 	public static int rightFollow = 1;
 	
 	//PWM Values
-	public static int elevator = 1;
+	public static int elevator = 3;
 	
 	//PCM Values
 	public static int soleportone = 1;
 	public static int soleporttwo = 2;
+	
+	//Button Values
+	public static int lift = 1;
 	
 	//Joystick Ports
 	public static int joystick0 = 0;

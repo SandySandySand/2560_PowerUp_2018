@@ -42,12 +42,12 @@ public class DriveTrain extends Subsystem implements PIDOutput
     	
     	drive = new DifferentialDrive(left, right);
     	
-    	ahrs = new AHRS(Port.kUSB);
+    	//ahrs = new AHRS(Port.kUSB);
     	
-    	rotatePID = new PIDController(kP, kI, kD, ahrs,  this);
+    	/*rotatePID = new PIDController(kP, kI, kD, ahrs,  this);
     	//rotatePID.setContinuous(true);
     	rotatePID.setInputRange(-360, 360);
-    	rotatePID.setOutputRange(-1.0, 1.0);
+    	rotatePID.setOutputRange(-1.0, 1.0);*/
     }
     
     @Override 
@@ -108,7 +108,7 @@ public class DriveTrain extends Subsystem implements PIDOutput
 	
     public void initDefaultCommand() 
     {
-        setDefaultCommand(new DriveWithController());
+        //setDefaultCommand(new DriveWithController());
     }
 
 	

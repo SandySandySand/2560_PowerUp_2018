@@ -12,7 +12,7 @@ public class DriveWithController extends Command
 
     public DriveWithController() 
     {
-        requires(Robot.drivetrain);
+        //requires(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time
@@ -24,7 +24,7 @@ public class DriveWithController extends Command
     protected void execute() 
     {
     	double multiplier = 0.8;
-    	Robot.drivetrain.arcadeDrive(-Robot.m_oi.joystick0.getRawAxis(1)*multiplier, Robot.m_oi.joystick0.getRawAxis(2)*0.66);
+    	//Robot.drivetrain.arcadeDrive(-Robot.m_oi.joystick0.getRawAxis(1)*multiplier, Robot.m_oi.joystick0.getRawAxis(2)*0.66);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -36,7 +36,7 @@ public class DriveWithController extends Command
     // Called once after isFinished returns true
     protected void end() 
     {
-    	Robot.drivetrain.stop();
+    	//Robot.drivetrain.stop();
     }
 
     // Called when another command which requires one or more of the same

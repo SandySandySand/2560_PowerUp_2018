@@ -23,6 +23,7 @@ public class RobotMap
 	
 	//PWM Values
 	public static int elevator = 0;
+	public static int climber = 1;
 	
 	//PCM Values
 	public static int soleportone = 0;
@@ -37,5 +38,8 @@ public class RobotMap
 	public static int down = 2;
 	public static int closeclaw = 3;
 	public static int lift = 4;
+	public static int climb = 5;
 	
+	//DIO Port
+	public static int limit = 0;
 }

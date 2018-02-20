@@ -10,6 +10,7 @@ package org.usfirst.frc.team2560.robot;
 import org.usfirst.frc.team2560.robot.commands.DriveForwardEncoder;
 import org.usfirst.frc.team2560.robot.commands.LeftStationAutoSOLS;
 import org.usfirst.frc.team2560.robot.subsystems.Claw;
+import org.usfirst.frc.team2560.robot.subsystems.Climber;
 import org.usfirst.frc.team2560.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2560.robot.subsystems.Elevator;
 
@@ -32,6 +33,7 @@ public class Robot extends TimedRobot
 	public static Claw claw;
 	public static DriveTrain drivetrain;
 	public static Elevator elevator;
+	public static Climber climb;
 	public static OI m_oi;
 	
 	Command m_autonomousCommand;
@@ -46,6 +48,7 @@ public class Robot extends TimedRobot
 		claw = new Claw();
 		drivetrain = new DriveTrain();
 		elevator = new Elevator();
+		climb = new Climber();
 		m_oi = new OI();
 		
 	}

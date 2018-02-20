@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team2560.robot;
 
+import org.usfirst.frc.team2560.robot.commands.Climb;
 import org.usfirst.frc.team2560.robot.commands.GoDown;
 import org.usfirst.frc.team2560.robot.commands.SetBothSolenoids;
 import org.usfirst.frc.team2560.robot.commands.UnsetBothSolenoids;
@@ -52,7 +53,11 @@ public class OI
 		lift.whileHeld(new LiftUp());
 		
 		Button down = new JoystickButton(joystick1, RobotMap.down);
+		down.cancelWhenPressed(new LiftUp());
 		down.whileHeld(new GoDown());
+		
+		Button climb = new JoystickButton(joystick1, RobotMap.climb);
+		climb.whileHeld(new Climb());
 	}
 	public Joystick getJoystick0()
 	{

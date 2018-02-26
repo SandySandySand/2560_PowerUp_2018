@@ -31,9 +31,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot 
 {
 	
-	//public static DriveTrain drivetrain;
+	public static DriveTrain drivetrain;
 	public static Elevator elevator;
-	//public static Claw claw;
+	public static Claw claw;
 	public static OI m_oi;
 
 	Command m_autonomousCommand;
@@ -46,9 +46,9 @@ public class Robot extends TimedRobot
 	public void robotInit() 
 	{
 		
-		//drivetrain = new DriveTrain();
+		drivetrain = new DriveTrain();
 		elevator = new Elevator();
-		//claw = new Claw();
+		claw = new Claw();
 		m_oi = new OI();
 	}
 

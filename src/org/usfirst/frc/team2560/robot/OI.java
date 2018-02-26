@@ -30,7 +30,7 @@ public class OI
 		Button lift = new JoystickButton(joystick1, RobotMap.lift);
 		lift.whileHeld(new liftUp());
 		
-		Button down = new JoystickButton(joystick1, 3);
+		Button down = new JoystickButton(joystick1, RobotMap.down);
 		down.whileHeld(new GoDown());
 	}
 	public Joystick getJoystick0()

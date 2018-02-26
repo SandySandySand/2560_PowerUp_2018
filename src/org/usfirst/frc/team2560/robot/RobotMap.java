@@ -30,6 +30,7 @@ public class RobotMap
 	
 	//Button Values
 	public static int lift = 1;
+	public static int down = 3;
 	
 	//Joystick Ports
 	public static int joystick0 = 0;

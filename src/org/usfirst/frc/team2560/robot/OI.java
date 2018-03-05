@@ -30,18 +30,6 @@ public class OI
 		joystick0 = new Joystick(RobotMap.joystick0);
 		joystick1 = new Joystick(RobotMap.joystick1);
 		
-		/*if (joystick1.getPOV(0) == 0)
-		{
-			Robot.elevator.liftUp(0.5);
-		}
-		else if (joystick1.getPOV(0) == 180)
-		{
-			Robot.elevator.goDown(0.5);
-		}
-		else
-		{
-			Robot.elevator.stop();
-		}*/
 		
 		Button openClaw = new JoystickButton(joystick1, RobotMap.openclaw);
 		openClaw.whenPressed(new SetBothSolenoids());

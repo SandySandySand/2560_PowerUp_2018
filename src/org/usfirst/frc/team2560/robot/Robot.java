@@ -7,17 +7,22 @@
 
 package org.usfirst.frc.team2560.robot;
 
-import org.usfirst.frc.team2560.robot.commands.DriveForwardEncoder;
+import org.usfirst.frc.team2560.robot.commands.CrossBaselineAuto;
 import org.usfirst.frc.team2560.robot.commands.LeftStationAutoSOLS;
+import org.usfirst.frc.team2560.robot.commands.LeftStationAutoSORS;
+import org.usfirst.frc.team2560.robot.commands.RightStationAutoSOLS;
+import org.usfirst.frc.team2560.robot.commands.RightStationAutoSORS;
+import org.usfirst.frc.team2560.robot.commands.CenterStationAutoSOLS;
+import org.usfirst.frc.team2560.robot.commands.CenterStationAutoSORS;
 import org.usfirst.frc.team2560.robot.subsystems.Claw;
 import org.usfirst.frc.team2560.robot.subsystems.Climber;
 import org.usfirst.frc.team2560.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2560.robot.subsystems.Elevator;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -85,7 +90,20 @@ public class Robot extends TimedRobot
 	@Override
 	public void autonomousInit() 
 	{
-		m_autonomousCommand = new LeftStationAutoSOLS();
+		String gameData;
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+        if(gameData.length() > 0)
+        {
+			if(gameData.charAt(0) == 'L')
+			{
+				m_autonomousCommand = new LeftStationAutoSOLS(); //RightStationAutoSOLS(); //CenterStationAutoSOLS(); //CrossBaselineAuto();
+			} 
+			else 
+			{
+				m_autonomousCommand = new LeftStationAutoSORS(); //RightStationAutoSORS(); //CenterStationAutoSORS(); //CrossBaselineAuto();
+			}
+        }
+		
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -106,7 +124,7 @@ public class Robot extends TimedRobot
 	@Override
 	public void autonomousPeriodic() 
 	{
-		Scheduler.getInstance().run();
+		Scheduler.getInstance().run(); 
 	}
 
 	@Override

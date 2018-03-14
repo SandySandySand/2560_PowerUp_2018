@@ -8,6 +8,8 @@
 package org.usfirst.frc.team2560.robot;
 
 import org.usfirst.frc.team2560.robot.commands.GoDown;
+import org.usfirst.frc.team2560.robot.commands.SetBothSolenoids;
+import org.usfirst.frc.team2560.robot.commands.UnsetBothSolenoids;
 import org.usfirst.frc.team2560.robot.commands.liftUp;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -32,6 +34,13 @@ public class OI
 		
 		Button down = new JoystickButton(joystick1, RobotMap.down);
 		down.whileHeld(new GoDown());
+		
+		Button open = new JoystickButton(joystick1, RobotMap.open);
+		open.whenPressed(new SetBothSolenoids());
+		
+		Button close = new JoystickButton(joystick1, RobotMap.close);
+		close.whenPressed(new UnsetBothSolenoids());
+		
 	}
 	public Joystick getJoystick0()
 	{

@@ -23,7 +23,7 @@ public class liftUp extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-    	Robot.elevator.liftUp(0.5);
+    	Robot.elevator.liftUp(0.75);
     }
 
     // Make this return true when this Command no longer needs to run execute()

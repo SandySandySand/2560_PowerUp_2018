@@ -23,8 +23,8 @@ public class DriveWithController extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-    	double multiplier = 0.8;
-    	Robot.drivetrain.arcadeDrive(-Robot.m_oi.joystick0.getRawAxis(1)*multiplier, Robot.m_oi.joystick0.getRawAxis(2)*0.66);
+    	double multiplier = 0.65;
+    	Robot.drivetrain.arcadeDrive(-Robot.m_oi.joystick0.getRawAxis(1)*multiplier, Robot.m_oi.joystick0.getRawAxis(2)*0.5);
     }
 
     // Make this return true when this Command no longer needs to run execute()

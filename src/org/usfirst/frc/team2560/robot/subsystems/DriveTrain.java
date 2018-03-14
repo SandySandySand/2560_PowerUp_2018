@@ -108,7 +108,7 @@ public class DriveTrain extends Subsystem implements PIDOutput
 	
     public void initDefaultCommand() 
     {
-        //setDefaultCommand(new DriveWithController());
+        setDefaultCommand(new DriveWithController());
     }
 
 	

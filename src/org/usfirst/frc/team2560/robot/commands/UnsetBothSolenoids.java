@@ -12,7 +12,7 @@ public class UnsetBothSolenoids extends Command
 
     public UnsetBothSolenoids() 
     {
-    	requires(Robot.claw);
+    	//requires(Robot.claw);
     }
 
     // Called just before this Command runs the first time
@@ -24,7 +24,7 @@ public class UnsetBothSolenoids extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-    	Robot.claw.unsetSoleOne();
+    	//Robot.claw.unsetSoleOne();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -36,7 +36,7 @@ public class UnsetBothSolenoids extends Command
     // Called once after isFinished returns true
     protected void end() 
     {
-    	Robot.claw.offSole();
+    	//Robot.claw.offSole();
     }
 
     // Called when another command which requires one or more of the same

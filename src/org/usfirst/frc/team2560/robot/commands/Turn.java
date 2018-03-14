@@ -30,28 +30,8 @@ public class Turn extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-    	double endAngle = Robot.drivetrain.getAngle();
-    	if(Math.signum(requiredAngle) == -1)
-    	{
-    		while(endAngle > requiredAngle)
-    		{
-    			endAngle = Robot.drivetrain.getAngle();
-    			Robot.drivetrain.gyroDrive(0, Robot.drivetrain.rotatePID.get(), false);
-    		}
-    	}
-    	else if (Math.signum(endAngle) == 1)
-    	{
-    		while(endAngle < requiredAngle)
-        	{
-        		endAngle = Robot.drivetrain.getAngle();
-        		Robot.drivetrain.gyroDrive(0, Robot.drivetrain.rotatePID.get(), false);	//create method that turns robot according to gyro angle
-        	}
-    	}
-    	else
-    	{
-    		end();
-    		SmartDashboard.putString("Failed", "Your turn value has failed, please check the value");
-    	}//end of else
+    	double currentAngle = Robot.drivetrain.getAngle();
+    	Robot.drivetrain.gyroDrive(0, Robot.drivetrain.rotatePID.get(), false);	//create method that turns robot according to gyro angle
     }//end of execute
 
     // Make this return true when this Command no longer needs to run execute()

@@ -5,24 +5,23 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class CenterStationAutoSORS extends CommandGroup {
+public class CenterStationAutoSORS extends CommandGroup 
+{
 
-    public CenterStationAutoSORS() {
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
+    public CenterStationAutoSORS() 
+    {
+    	addSequential(new LiftUp(), 1.7); //lifts elevator, dropping cube
+        addSequential(new UnsetBothSolenoids(), 0.2); //allows the claw to open
+        addSequential(new StopLift(), 0.6);//stops the lift for a second
+        addSequential(new GoDown(), 0.8); //drops lifter
+        addSequential(new SetBothSolenoids(), 0.1); //grabs POWER CUBE
+        addSequential(new StopLift(), 0.6); //stops lift after grabbing of POWER CUBE
+        addSequential(new LiftUp(), 0.8); //lifts elevator
+        //end of cube sequence auto things
+        addSequential(new ResetEncoders(), 0.1);//sets encoders at 0 for proper calculation
+        addSequential(new DriveForwardEncoder(132, 0.65));//drives forward at half speed
+        //end of driving sequence
+        addSequential(new LiftUp(), 1.45); //lifts higher than the switch
+        addSequential(new UnsetBothSolenoids(), 0.1); //drops cube
     }
 }
